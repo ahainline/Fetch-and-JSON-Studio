@@ -6,6 +6,10 @@ window.addEventListener('load', () => {
             });
 
             let htmlBlock = document.getElementById('container');
+
+            htmlBlock.innerHTML += `
+            <h4>Number of Astronauts Displayed: ${json.length}</h4>
+            `
             for (let i = 0; i < json.length; i++) {
                 htmlBlock.innerHTML += `
                 <div class="astronaut">
@@ -13,16 +17,15 @@ window.addEventListener('load', () => {
                         <h3>${json[i].firstName} ${json[i].lastName}</h3>
                         <ul>
                             <li>Hours in space: ${json[i].hoursInSpace}</li>
-                            <li id="status">Active: ${json[i].active}</li>
+                            <li id="status_${json[i].id}">Active: ${json[i].active}</li>
                             <li>Skills: ${json[i].skills}</li>
                         </ul>
                     </div>
                     <img class="avatar" src="${json[i].picture}"/>
                 </div>
-                `
-                let currentStatus = document.getElementById("status");
+                `;
                 if (json[i].active === true) {
-                    currentStatus.style.color = "green";
+                    document.getElementById(`status_${json[i].id}`).style.color = "green";
                 }
             }
             
